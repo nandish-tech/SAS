@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Face Recognition Attendance System</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Face Recognition Attendance System</h1>
+        
+        <div class="dashboard-selection">
+            <div class="dashboard-card">
+                <h2>Student Portal</h2>
+                <p>Mark your attendance using face recognition</p>
+                <button onclick="window.location.href='student-dashboard.html'" class="dashboard-btn student-btn">
+                    Access Student Portal
+                </button>
+            </div>
+            
+            <div class="dashboard-card">
+                <h2>Admin Portal</h2>
+                <p>Manage students and view attendance records</p>
+                <div class="admin-login">
+                    <input type="password" id="adminPassword" placeholder="Enter admin password" required>
+                    <button onclick="loginAdmin()" class="dashboard-btn admin-btn">
+                        Access Admin Portal
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status">
+            <p id="statusMessage">Select your portal to continue</p>
+        </div>
+    </div>
+    
+    <script>
+        function loginAdmin() {
+            const password = document.getElementById('adminPassword').value;
+            const adminPassword = 'admin123'; // In production, use proper authentication
+            
+            if (password === adminPassword) {
+                localStorage.setItem('adminLoggedIn', 'true');
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                document.getElementById('statusMessage').textContent = 'Invalid admin password!';
+                document.getElementById('statusMessage').style.color = '#f44336';
+            }
+        }
+        
+        // Allow Enter key to login
+        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loginAdmin();
+            }
+        });
+    </script>
+</body>
+</html>

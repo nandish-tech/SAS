@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Admin Portal - Face Recognition Attendance</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface@latest"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Admin Portal</h1>
+            <div class="admin-actions">
+                <button onclick="logout()" class="logout-btn">Logout</button>
+                <button onclick="window.location.href='index.html'" class="back-btn">← Back to Home</button>
+            </div>
+        </div>
+        
+        <div class="admin-tabs">
+            <button class="tab-btn active" onclick="showTab('register')">Register Students</button>
+            <button class="tab-btn" onclick="showTab('manage')">Manage Students</button>
+            <button class="tab-btn" onclick="showTab('attendance')">View Attendance</button>
+        </div>
+        
+        <!-- Register Students Tab -->
+        <div id="register-tab" class="tab-content active">
+            <div class="video-container">
+                <video id="video" autoplay muted></video>
+                <canvas id="canvas"></canvas>
+            </div>
+            
+            <div class="controls">
+                <button id="startCamera">Start Camera</button>
+                <button id="stopCamera">Stop Camera</button>
+            </div>
+            
+            <div class="registration-section">
+                <h3>Register New Student</h3>
+                <p style="color: #666; margin-bottom: 10px;">Position student's face in front of the camera and enter details to register.</p>
+                <div class="form-row">
+                    <input type="text" id="personName" placeholder="Enter student's full name" required>
+                    <input type="text" id="personUSN" placeholder="Enter USN (e.g., 1AB21CS001)" required>
+                </div>
+                <button id="registerPerson">Register Student</button>
+            </div>
+        </div>
+        
+        <!-- Manage Students Tab -->
+        <div id="manage-tab" class="tab-content">
+            <div class="search-section">
+                <input type="text" id="searchStudent" placeholder="Search by name or USN..." onkeyup="filterStudents()">
+            </div>
+            <div class="registered-faces">
+                <h3>Registered Students</h3>
+                <div id="registeredList"></div>
+            </div>
+        </div>
+        
+        <!-- Attendance Tab -->
+        <div id="attendance-tab" class="tab-content">
+            <div class="attendance-filters">
+                <input type="date" id="attendanceDate" onchange="filterAttendance()">
+                <button onclick="exportAttendance()">Export CSV</button>
+                <button onclick="clearAttendance()">Clear All Attendance</button>
+            </div>
+            <div class="attendance-stats">
+                <div class="stat-card">
+                    <h4>Today's Attendance</h4>
+                    <span id="todayCount">0</span>
+                </div>
+                <div class="stat-card">
+                    <h4>Total Students</h4>
+                    <span id="totalStudents">0</span>
+                </div>
+                <div class="stat-card">
+                    <h4>Attendance Rate</h4>
+                    <span id="attendanceRate">0%</span>
+                </div>
+            </div>
+            <div class="attendance-log">
+                <h3>Attendance Records</h3>
+                <div id="attendanceList"></div>
+            </div>
+        </div>
+        
+        <div class="status">
+            <p id="statusMessage">Welcome to Admin Portal</p>
+        </div>
+    </div>
+    
+    <script src="admin-script.js"></script>
+</body>
+</html>

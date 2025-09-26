@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Student Portal - Face Recognition Attendance</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface@latest"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Student Portal</h1>
+            <button onclick="window.location.href='index.html'" class="back-btn">← Back to Home</button>
+        </div>
+        
+        <div class="video-container">
+            <video id="video" autoplay muted></video>
+            <canvas id="canvas"></canvas>
+        </div>
+        
+        <div class="controls">
+            <button id="startCamera">Start Camera</button>
+            <button id="markAttendance">Mark Attendance</button>
+            <button id="stopCamera">Stop Camera</button>
+        </div>
+        
+        <div class="status">
+            <p id="statusMessage">Click "Start Camera" to begin face recognition</p>
+        </div>
+        
+        <div class="attendance-log">
+            <h3>Today's Attendance</h3>
+            <div id="attendanceList"></div>
+        </div>
+        
+        <div class="instructions">
+            <h3>Instructions</h3>
+            <ul>
+                <li>Click "Start Camera" to begin face detection</li>
+                <li>Position your face clearly in front of the camera</li>
+                <li>Wait for the system to recognize you (green box around face)</li>
+                <li>Click "Mark Attendance" when your name appears</li>
+                <li>You can only mark attendance once per day</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="student-script.js"></script>
+</body>
+</html>

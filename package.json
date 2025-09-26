@@ -1,0 +1,10 @@
+{
+  "name": "sas-attendance",
+  "version": "1.0.0",
+  "main": "api.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node api.js"
+  },
+  "dependencies": {}
+}
