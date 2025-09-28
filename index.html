@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,57 +8,185 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Face Recognition Attendance System</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <style>
+        .front-page {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .welcome-section {
+            margin-bottom: 3rem;
+        }
+        
+        .welcome-section h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .welcome-section p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .access-options {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .access-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-width: 250px;
+            max-width: 300px;
+        }
+        
+        .access-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .access-card h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .access-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .access-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .student-access-btn {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+        
+        .student-access-btn:hover {
+            background: linear-gradient(135deg, #45a049, #3d8b40);
+            transform: scale(1.05);
+        }
+        
+        .admin-access-btn {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+        }
+        
+        .admin-access-btn:hover {
+            background: linear-gradient(135deg, #1976D2, #1565C0);
+            transform: scale(1.05);
+        }
+        
+        .features {
+            margin-top: 3rem;
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+        
+        .features h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .features li {
+            color: #666;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .features li:before {
+            content: "✓";
+            color: #4CAF50;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .access-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .welcome-section h1 {
+                font-size: 2rem;
+            }
+            
+            .access-card {
+                min-width: 280px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Face Recognition Attendance System</h1>
-        
-        <div class="dashboard-selection">
-            <div class="dashboard-card">
-                <h2>Student Portal</h2>
-                <p>Mark your attendance using face recognition</p>
-                <button onclick="window.location.href='student-dashboard.html'" class="dashboard-btn student-btn">
-                    Access Student Portal
-                </button>
+        <div class="front-page">
+            <div class="welcome-section">
+                <h1>Welcome to Face Recognition Attendance System</h1>
+                <p>A modern, secure, and efficient way to manage attendance using advanced face recognition technology. Choose your access portal below to get started.</p>
             </div>
             
-            <div class="dashboard-card">
-                <h2>Admin Portal</h2>
-                <p>Manage students and view attendance records</p>
-                <div class="admin-login">
-                    <input type="password" id="adminPassword" placeholder="Enter admin password" required>
-                    <button onclick="loginAdmin()" class="dashboard-btn admin-btn">
+            <div class="access-options">
+                <div class="access-card">
+                    <h2>👨‍🎓 Student Access</h2>
+                    <p>Mark your attendance quickly and securely using facial recognition technology.</p>
+                    <button onclick="window.location.href='student-dashboard.html'" class="access-btn student-access-btn">
+                        Access Student Portal
+                    </button>
+                </div>
+                
+                <div class="access-card">
+                    <h2>👨‍💼 Admin Access</h2>
+                    <p>Manage students, view attendance records, and control the system settings.</p>
+                    <button onclick="window.location.href='home.html'" class="access-btn admin-access-btn">
                         Access Admin Portal
                     </button>
                 </div>
             </div>
-        </div>
-        
-        <div class="status">
-            <p id="statusMessage">Select your portal to continue</p>
+            
+            <div class="features">
+                <h3>System Features</h3>
+                <ul>
+                    <li>Real-time face detection and recognition</li>
+                    <li>Secure student registration with face capture</li>
+                    <li>Daily attendance tracking and reporting</li>
+                    <li>Admin dashboard for complete system management</li>
+                    <li>Mobile-friendly responsive design</li>
+                    <li>No external database required - simple file-based storage</li>
+                </ul>
+            </div>
         </div>
     </div>
-    
-    <script>
-        function loginAdmin() {
-            const password = document.getElementById('adminPassword').value;
-            const adminPassword = 'admin123'; // In production, use proper authentication
-            
-            if (password === adminPassword) {
-                localStorage.setItem('adminLoggedIn', 'true');
-                window.location.href = 'admin-dashboard.html';
-            } else {
-                document.getElementById('statusMessage').textContent = 'Invalid admin password!';
-                document.getElementById('statusMessage').style.color = '#f44336';
-            }
-        }
-        
-        // Allow Enter key to login
-        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                loginAdmin();
-            }
-        });
-    </script>
 </body>
 </html>
